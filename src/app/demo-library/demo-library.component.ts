@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DemoService } from '../demo.service';
 
 @Component({
   selector: 'app-demo-library',
-  imports: [],
   templateUrl: './demo-library.component.html',
-  styleUrl: './demo-library.component.css'
+  styleUrls: ['./demo-library.component.css']
 })
-export class DemoLibraryComponent {
+export class DemoLibraryComponent implements OnInit {
+  demos = [];
+  selectedDemo: any;
 
+  constructor(private demoService: DemoService) {}
+
+  ngOnInit(): void {
+    this.demos = this.demoService.getDemos();
+  }
+
+  openDemo(demo: any): void {
+    this.selectedDemo = demo;
+    $('#demoModal').modal('show');
+  }
 }
