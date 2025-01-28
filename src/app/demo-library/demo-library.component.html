@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2>E-Tax Admin Software Demos</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let demo of demos">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ demo.title }}</h5>
+          <p class="card-text">{{ demo.description }}</p>
+          <button class="btn btn-primary" (click)="openDemo(demo)">View Demo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="demoModal" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="demoModalLabel">{{ selectedDemo?.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe [src]="selectedDemo?.navatticUrl | safeUrl" width="100%" height="400px"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
